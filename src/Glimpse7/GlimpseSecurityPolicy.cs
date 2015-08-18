@@ -2,7 +2,8 @@
 
 using Glimpse.AspNet.Extensions;
 using Glimpse.Core.Extensibility;
-using umbraco.BusinessLogic;
+using Umbraco.Core.Services;
+using Umbraco.Core.Persistence;
 
 namespace Glimpse7
 {
@@ -12,7 +13,7 @@ namespace Glimpse7
         {
             // You can perform a check like the one below to control Glimpse's permissions within your application.
             // More information about RuntimePolicies can be found at http://getglimpse.com/Help/Custom-Runtime-Policy
-            User currentUser = User.GetCurrent();
+            var currentUser = new UserService(new RepositoryFactory());
             if (currentUser == null)
             {
                 return RuntimePolicy.Off;
